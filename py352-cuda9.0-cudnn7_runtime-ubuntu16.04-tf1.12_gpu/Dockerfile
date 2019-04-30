@@ -5,16 +5,21 @@ MAINTAINER Kuldeep Shah <Kuldeep.Shah@continental.com>
 # Some common environmenta variables that Python uses
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
+ENV http_proxy="http://debugger:debu02@cias3basic.conti.de:8080"
+ENV https_proxy="http://debugger:debu02@cias3basic.conti.de:8080"
+ENV HTTP_PROXY="http://debugger:debu02@cias3basic.conti.de:8080"
+ENV HTTPS_PROXY="http://debugger:debu02@cias3basic.conti.de:8080"
+
 # Install lower level dependencies
 RUN apt-get update --fix-missing
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get install -y \
 	python-dev build-essential \
 	curl python3 python3-pip \
 	cmake \
 	curl \
-	g++ \
-	gfortran \
+	#g++ \
+	#gfortran \
 	git \
 	libffi-dev \
 	libfreetype6-dev \
@@ -29,7 +34,7 @@ RUN apt-get update && apt-get install -y \
 	libtiff5-dev \
 	libwebp-dev \
 	libzmq3-dev \
-	nano \
+	#nano \
 	pkg-config \
 	unzip \
 	vim \
