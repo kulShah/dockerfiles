@@ -1,6 +1,6 @@
 FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
 
-MAINTAINER Kuldeep Shah <Kuldeep.Shah@continental.com>
+MAINTAINER Kuldeep Shah <Kul.n.shah@gmail.com>
 
 # Some common environmenta variables that Python uses
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
