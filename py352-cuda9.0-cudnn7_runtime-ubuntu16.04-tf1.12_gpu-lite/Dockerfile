@@ -72,8 +72,6 @@ RUN python3 -m pip --no-cache-dir install \
 	#wheel \
 	#zmq \
 	opencv-python
-	
-RUN pip install pycocotools
 
 # Install a specific version of TensorFlow
 # You may also install anything else from pip like this

@@ -16,39 +16,40 @@ RUN apt-get install -y \
 	#g++ \
 	#gfortran \
 	git \
-	libffi-dev \
-	libfreetype6-dev \
-	libhdf5-dev \
-	libjpeg-dev \
-	liblcms2-dev \
+	#libffi-dev \
+	#libfreetype6-dev \
+	#libhdf5-dev \
+	#libjpeg-dev \
+	#liblcms2-dev \
 	libopenblas-dev \
-	liblapack-dev \
-	libopenjpeg5 \
-	libpng12-dev \
-	libssl-dev \
-	libtiff5-dev \
-	libwebp-dev \
-	libzmq3-dev \
+	#liblapack-dev \
+	#libopenjpeg5 \
+	#libpng12-dev \
+	#libssl-dev \
+	#libtiff5-dev \
+	#libwebp-dev \
+	#libzmq3-dev \
+	#libglib2.0-0 \
+	#libsm6 \
+	#libxext6 \
+	#libxrender1 \
+	#libfontconfig1 \
 	#nano \
-	pkg-config \
-	unzip \
+	#pkg-config \
+	#unzip \
 	vim \
 	wget \
-	libx264-dev \
+	#libx264-dev \
 	python-numpy \
 	python-scipy \
-	python-nose \
+	#python-nose \
 	python-h5py \
 	python-skimage \
 	python-matplotlib \
 	python-pandas \
-	python-sklearn \
-	python-sympy \
-	libglib2.0-0 \
-	libsm6 \
-	libxext6 \
-	libxrender1 \
-	libfontconfig1
+	#python-sympy \
+	python-sklearn 
+	
 
 RUN apt-get clean
 RUN apt-get autoremove
@@ -65,15 +66,15 @@ RUN python3 -m pip --no-cache-dir install \
 	easydict \
 	Cython \
 	Pillow \
-	pygments \
-	six \
-	sphinx \
-	wheel \
-	zmq \
+	#pygments \
+	#six \
+	#sphinx \
+	#wheel \
+	#zmq \
 	opencv-python
 
 # Install a specific version of TensorFlow
 # You may also install anything else from pip like this
 RUN python3 -m pip --no-cache-dir install \
-	tensorflow-gpu==1.12.0 \
+	tensorflow==1.12.0 \
 	tensorlayer
