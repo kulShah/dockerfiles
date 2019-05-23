@@ -22,7 +22,8 @@ RUN apt-get install -y \
 	python-scipy \
 	python-skimage \
 	python-sklearn \
-	vim \
+	tree \
+  vim \
 	wget	
 
 RUN apt-get clean && \
@@ -43,3 +44,9 @@ RUN python3 -m pip --no-cache-dir install \
 	Pillow \
 	tensorflow==1.12.0 \
 	tensorlayer
+
+RUN echo 'export PS1="\[\033[04;35m\]\u @ \[\033[04;35m\]\H \[\033[00m\][\w] $ "' >> ~/.bashrc && \
+    echo 'alias ls="ls -1as --human-readable --block-size=M --color=always --group-directories-first --sort=extension"' >> ~/.bashrc && \
+    echo 'alias mkdir="mkdir -v"' >> ~/.bashrc && \
+    echo 'alias tree="tree --dirsfirst --sort=name"' >> ~/.bashrc && \
+    echo 'set -o noclobber' >> ~/.bashrc

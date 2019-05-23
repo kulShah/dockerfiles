@@ -42,7 +42,8 @@ RUN apt-get install -y \
 	python-skimage \
 	python-sklearn \
 	python-sympy \
-	unzip \
+	tree \
+  unzip \
 	vim \
 	wget
 
@@ -69,3 +70,9 @@ RUN python3 -m pip --no-cache-dir install \
 	tensorlayer \
 	wheel \
 	zmq
+
+RUN echo 'export PS1="\[\033[04;35m\]\u @ \[\033[04;35m\]\H \[\033[00m\][\w] $ "' >> ~/.bashrc && \
+    echo 'alias ls="ls -1as --human-readable --block-size=M --color=always --group-directories-first --sort=extension"' >> ~/.bashrc && \
+    echo 'alias mkdir="mkdir -v"' >> ~/.bashrc && \
+    echo 'alias tree="tree --dirsfirst --sort=name"' >> ~/.bashrc && \
+    echo 'set -o noclobber' >> ~/.bashrc
