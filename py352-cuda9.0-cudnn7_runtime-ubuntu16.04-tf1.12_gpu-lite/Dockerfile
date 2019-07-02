@@ -64,7 +64,7 @@ RUN update-alternatives --set libblas.so.3 /usr/lib/openblas-base/libblas.so.3
 
 RUN pip2 install -U pip numpy==1.15 \
   && pip3 install -U pip numpy==1.15 \
-  && pip install numpy==1.15 scipy matplotlib scikit-image scikit-learn
+  && pip3 install scipy matplotlib scikit-image scikit-learn
 
 RUN cd /opt \
   && git clone --verbose https://github.com/opencv/opencv.git -b 3.4.5 \
