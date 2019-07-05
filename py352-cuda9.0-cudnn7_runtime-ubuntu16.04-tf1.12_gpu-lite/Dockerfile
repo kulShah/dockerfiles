@@ -62,16 +62,19 @@ RUN apt-get clean \
 # Link BLAS library to use OpenBLAS using the alternatives mechanism (https://www.scipy.org/scipylib/building/linux.html#debian-ubuntu)
 RUN update-alternatives --set libblas.so.3 /usr/lib/openblas-base/libblas.so.3
 
-RUN pip2 install -U pip numpy==1.15 \
-  && pip3 install -U pip numpy==1.15 \
-  && pip3 install scipy matplotlib scikit-image scikit-learn
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 10 \
+	  && update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 10 \
+	  && pip install --upgrade pip
+
+RUN python3 -m pip --no-cache-dir install numpy==1.15 \
+    && python3 -m pip --no-cache-dir install scipy matplotlib scikit-image scikit-learn
 
 RUN cd /opt \
-  && git clone --verbose https://github.com/opencv/opencv.git -b 3.4.5 \
+  && git clone --verbose https://github.com/opencv/opencv.git -b 3.4.1 \
   && cd /opt \
-  && wget https://github.com/opencv/opencv_contrib/archive/3.4.5.tar.gz \
+  && wget https://github.com/opencv/opencv_contrib/archive/3.4.1.tar.gz \
   && mkdir opencv_contrib \
-  && tar -xf 3.4.5.tar.gz -C opencv_contrib --strip-components 1 \
+  && tar -xf 3.4.1.tar.gz -C opencv_contrib --strip-components 1 \
   && cd /opt/opencv \
   && mkdir release \
   && cd release \
@@ -85,7 +88,7 @@ RUN cd /opt \
   -DINSTALL_PYTHON_EXAMPLES=ON \
   -DBUILD_EXAMPLES=OFF \
   -DWITH_QT=OFF \
-  -DWITH_OPENGL=OFF \
+  -DWITH_OPENGL=ON \
   -DWITH_CUDA=ON \
   -DCUDA_GENERATION=Auto \
   -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules .. \
@@ -102,7 +105,7 @@ RUN python3 -m pip --no-cache-dir install \
 	tensorflow-gpu==1.12.0 \
 	tensorlayer==1.11.0
 
-RUN echo 'export PS1="\[\033[04;35m\]\u @ \[\033[04;35m\]\H \[\033[00m\][\w] $ "' >> ~/.bashrc && \
-  echo 'alias mkdir="mkdir -v"' >> ~/.bashrc && \
-  echo 'alias tree="tree --dirsfirst --sort=name"' >> ~/.bashrc && \
-  echo 'set -o noclobber' >> ~/.bashrc
+RUN echo 'export PS1="\[\033[04;35m\]\u @ \[\033[04;35m\]\H \[\033[00m\][\w] $ "' >> ~/.bashrc \
+    && echo 'alias mkdir="mkdir -v"' >> ~/.bashrc \
+    && echo 'alias tree="tree --dirsfirst --sort=name"' >> ~/.bashrc \
+    && echo 'set -o noclobber' >> ~/.bashrc
