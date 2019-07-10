@@ -3,6 +3,7 @@ __pycache__
 .idea
 *.a
 *.avi
+*.deb
 *.dylib
 *.gch
 *.gz
