@@ -36,10 +36,10 @@ RUN echo 'export PS1="\[\033[04;35m\]\u @ \[\033[04;35m\]\H \[\033[00m\][\w] $ "
     && echo 'set -o noclobber' >> ~/.bashrc \
     && mkdir /home/app \
     && cd /home/app/ \
-    && git clone https://ddbdeb6b89ce13b2c17cc1be235d9b1b16d0ad07:@github.com/kulShah/github_experts_feature.git \
-    && cd github_experts_feature/ \
-    && chmod +x src/expert \
-    && mkdir -p ~/bin \
-    && cp src/expert ~/bin \
-    && echo 'export PATH=$PATH":$HOME/bin"' >> ~/.bashrc \
-    && /bin/bash -c "source ~/.bashrc"
+    # add git clone here after making src code repo public
+    # && cd github_experts_feature/ \
+    # && chmod +x src/expert \
+    # && mkdir -p ~/bin \
+    # && cp src/expert ~/bin \
+    # && echo 'export PATH=$PATH":$HOME/bin"' >> ~/.bashrc \
+    # && /bin/bash -c "source ~/.bashrc"
