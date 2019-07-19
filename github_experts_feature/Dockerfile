@@ -31,24 +31,15 @@ RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 10 \
 	  && update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 10 \
 	  && pip install --upgrade pip
 
-# RUN python3 -m pip --no-cache-dir install \
-#     numpy==1.15 \
-#     matplotlib \
-#     PyOpenGL \ 
-#     PyOpenGL_accelerate \
-#     scikit-image \
-#     scikit-learn \
-#     scipy
-
 RUN echo 'export PS1="\[\033[04;35m\]\u @ \[\033[04;35m\]\H \[\033[00m\][\w] $ "' >> ~/.bashrc \
     && echo 'alias mkdir="mkdir -v"' >> ~/.bashrc \
     && echo 'set -o noclobber' >> ~/.bashrc \
     && mkdir /home/app \
     && cd /home/app/ \
-    && git clone https://ad900193c98102de56e52f5e42ccd351a5417e3f:@github.com/kulShah/github_experts_feature.git \
-    && chmod +x docker-entrypoint.sh \
-    && ./docker-entrypoint.sh
-
-# COPY docker-entrypoint.sh /usr/local/bin/
-# RUN ln -s usr/local/bin/docker-entrypoint.sh /
-# ENTRYPOINT ["docker-entrypoint.sh"]
+    && git clone https://ddbdeb6b89ce13b2c17cc1be235d9b1b16d0ad07:@github.com/kulShah/github_experts_feature.git \
+    && cd github_experts_feature/ \
+    && chmod +x src/expert \
+    && mkdir -p ~/bin \
+    && cp src/expert ~/bin \
+    && echo 'export PATH=$PATH":$HOME/bin"' >> ~/.bashrc \
+    && /bin/bash -c "source ~/.bashrc"
