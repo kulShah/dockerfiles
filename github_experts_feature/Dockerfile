@@ -32,7 +32,7 @@ RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 10 \
 	  && pip install --upgrade pip
 
 RUN python3 -m pip --no-cache-dir install \
-    GitPython
+    pydriller
 
 RUN echo 'export PS1="\[\033[04;35m\]\u @ \[\033[04;35m\]\H \[\033[00m\][\w] $ "' >> ~/.bashrc \
     && echo 'alias mkdir="mkdir -v"' >> ~/.bashrc \
