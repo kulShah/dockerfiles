@@ -32,7 +32,7 @@ RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 10 \
 	  && pip install --upgrade pip
 
 RUN python3 -m pip --no-cache-dir install \
-    pydriller
+    gitpython
 
 RUN echo 'export PS1="\[\033[04;35m\]\u @ \[\033[04;35m\]\H \[\033[00m\][\w] $ "' >> ~/.bashrc \
     && echo 'alias mkdir="mkdir -v"' >> ~/.bashrc \
@@ -44,8 +44,4 @@ RUN echo 'export PS1="\[\033[04;35m\]\u @ \[\033[04;35m\]\H \[\033[00m\][\w] $ "
     && cd /home/app/ \
     && git clone https://github.com/kulShah/github_experts_feature.git \
     && cd github_experts_feature/ \
-    && chmod +x src/expert \
-    && mkdir -p ~/bin \
-    && cp src/expert ~/bin \
-    && echo 'export PATH=$PATH":$HOME/bin"' >> ~/.bashrc \
-    && /bin/bash -c "source ~/.bashrc"
+    && python3 setup.py install
