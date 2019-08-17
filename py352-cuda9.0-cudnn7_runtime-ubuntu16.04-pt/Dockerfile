@@ -45,8 +45,8 @@ RUN python3 -m pip --no-cache-dir install \
 	easydict \
 	opencv-python \
 	Pillow==6.0.0 \
-	tensorflow==1.12.0 \
-	tensorlayer
+	torch \
+	torchvision
 
 RUN echo 'export PS1="\[\033[04;35m\]\u @ \[\033[04;35m\]\H \[\033[00m\][\w] $ "' >> ~/.bashrc && \
     # echo 'alias ls="ls -1as --human-readable --block-size=M --color=always --group-directories-first --sort=extension"' >> ~/.bashrc && \
