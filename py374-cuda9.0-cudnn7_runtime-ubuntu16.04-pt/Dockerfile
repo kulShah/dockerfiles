@@ -19,12 +19,6 @@ RUN apt-get update \
 	git \
 	libopenblas-dev \
 	python3-h5py \
-	python3-matplotlib \
-	python3-numpy \
-	python3-pandas \
-	python3-scipy \
-	python3-skimage \
-	python3-sklearn \
 	tree \
   vim \
 	wget	
@@ -43,10 +37,16 @@ RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 10
 RUN python3 -m pip --no-cache-dir install \
 	Cython \
 	easydict \
+	matplotlib \
+	numpy==1.16.4 \
 	opencv-python \
+	pandas \
 	Pillow==6.0.0 \
-	tensorflow==1.12.0 \
-	tensorlayer
+	scipy \
+	scikit-image \
+	scikit-learn \
+	torch \
+	torchvision
 
 RUN echo 'export PS1="\[\033[04;35m\]\u @ \[\033[04;35m\]\H \[\033[00m\][\w] $ "' >> ~/.bashrc && \
     # echo 'alias ls="ls -1as --human-readable --block-size=M --color=always --group-directories-first --sort=extension"' >> ~/.bashrc && \
