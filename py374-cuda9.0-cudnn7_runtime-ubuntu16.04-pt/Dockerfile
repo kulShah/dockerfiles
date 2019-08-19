@@ -19,12 +19,6 @@ RUN apt-get update \
 	git \
 	libopenblas-dev \
 	python3-h5py \
-	python3-matplotlib \
-	python3-numpy \
-	python3-pandas \
-	python3-scipy \
-	python3-skimage \
-	python3-sklearn \
 	tree \
   vim \
 	wget	
@@ -43,8 +37,14 @@ RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 10
 RUN python3 -m pip --no-cache-dir install \
 	Cython \
 	easydict \
+	matplotlib \
+	numpy==1.16.4 \
 	opencv-python \
+	pandas \
 	Pillow==6.0.0 \
+	scipy \
+	scikit-image \
+	scikit-learn \
 	torch \
 	torchvision
 
