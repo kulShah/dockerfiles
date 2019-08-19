@@ -45,6 +45,7 @@ RUN python3 -m pip --no-cache-dir install \
 	scipy \
 	scikit-image \
 	scikit-learn \
+	tb-nightly \
 	torch \
 	torchvision
 
