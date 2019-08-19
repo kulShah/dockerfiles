@@ -21,6 +21,8 @@ RUN apt-get install -y \
   python-pip \
   python3-dev \
   python3-pip \
+  python3-tk \
+  python-wxgtk3.0 \
   tree \
   vim \
   wget
