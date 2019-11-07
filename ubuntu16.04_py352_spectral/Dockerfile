@@ -2,27 +2,30 @@ FROM ubuntu:16.04
 
 LABEL maintainer="Kuldeep Shah <Kul.n.shah@gmail.com>"
 
+# EXPOSE 8000
+
 # Some common environmenta variables that Python uses
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 # Install lower level dependencies
-RUN apt-get update --fix-missing
+# RUN apt-get update --fix-missing
+RUN apt-get update
 
 RUN apt-get install -y \
   build-essential \
-  cmake \
+  # cmake \
   checkinstall \
-  curl \
+  # curl \
   g++ \
-  git \
-  libgtk-3-dev \
-  pkg-config \
+  # git \
+  # libgtk-3-dev \
+  # pkg-config \
   python-dev \
   python-pip \
   python3-dev \
   python3-pip \
   python3-tk \
-  python-wxgtk3.0 \
+  # python-wxgtk3.0 \
   tree \
   vim \
   wget
@@ -35,17 +38,18 @@ RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 10 \
 	  && update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 10 \
 	  && pip install --upgrade pip
 
-RUN pip3 install -U -f https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-16.04 wxPython
+# RUN pip3 install -U -f https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-16.04 wxPython
 
 RUN python3 -m pip --no-cache-dir install \
-    numpy==1.15 \
-    matplotlib \
-    PyOpenGL \ 
-    PyOpenGL_accelerate \
+    jupyter
+    # numpy==1.15 \
+    # matplotlib \
+    # PyOpenGL \ 
+    # PyOpenGL_accelerate \
     # scikit-image \
     # scikit-learn \
     # scipy \
-    spectral
+    # spectral
 
 #RUN cd /opt \
 #  && git clone --verbose https://github.com/opencv/opencv.git -b 3.4.1 \

@@ -107,12 +107,12 @@ RUN python3 -m pip --no-cache-dir install \
 
 # Install TensorRT
 # Download TensorRT 5.1.5.0 GA for Ubuntu 1604 and CUDA 10.1 DEB local repo packages from https://developer.nvidia.com/tensorrt.
-RUN dpkg -i nv-tensorrt-repo-ubuntu1604-cuda10.1-trt5.1.5.0-ga-20190427_1-1_amd64.deb \
-    && apt-key add /var/nv-tensorrt-repo-cuda10.1-trt5.1.5.0-ga-20190427/7fa2af80.pub \
-    && apt-get update \
-    && apt-get install -y tensorrt \
-    && apt-get install -y uff-converter-tf \
-    && apt-get install -y python3-libnvinfer-dev
+# RUN dpkg -i nv-tensorrt-repo-ubuntu1604-cuda10.1-trt5.1.5.0-ga-20190427_1-1_amd64.deb \
+#     && apt-key add /var/nv-tensorrt-repo-cuda10.1-trt5.1.5.0-ga-20190427/7fa2af80.pub \
+#     && apt-get update \
+#     && apt-get install -y tensorrt \
+#     && apt-get install -y uff-converter-tf \
+#     && apt-get install -y python3-libnvinfer-dev
 
 RUN echo 'export PS1="\[\033[04;35m\]\u @ \[\033[04;35m\]\H \[\033[00m\][\w] $ "' >> ~/.bashrc \
     && echo 'alias mkdir="mkdir -v"' >> ~/.bashrc \
