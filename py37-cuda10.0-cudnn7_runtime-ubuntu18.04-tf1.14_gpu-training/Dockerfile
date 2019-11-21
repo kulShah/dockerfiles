@@ -1,6 +1,6 @@
-FROM nvidia/cuda:9.0-cudnn7-runtime-ubuntu16.04
+FROM nvidia/cuda:10.0-cudnn7-runtime-ubuntu18.04
 
-LABEL maintainer="Kuldeep Shah <Kul.n.shah@gmail.com>"
+LABEL maintainer="Kuldeep Shah <kul.n.shah@gmail.com>"
 
 # Some common environmenta variables that Python uses
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
@@ -25,15 +25,15 @@ RUN apt-get install -y \
   libdc1394-22-dev \
   libeigen3-dev \
   libgflags-dev \
-  libgstreamer0.10-dev \
-  libgstreamer-plugins-base0.10-dev \
+  libgstreamer1.0-dev \
+  libgstreamer-plugins-base1.0-dev \
   libhdf5-dev \
-  libjasper-dev \
+  # jasper-devel \
   libjpeg8-dev \
   # libnvinfer5  \
   # libnvinfer-dev \
   libopenblas-dev \
-  libpng12-dev \
+  libpng-dev \
   libtiff5-dev \
   libswscale-dev \
   libtbb-dev \
@@ -42,7 +42,7 @@ RUN apt-get install -y \
   pkg-config \
   python-dev \
   python-pip \
-  python3-dev \
+  python3.7-dev \
   python3-pip \
   subversion \
   swig \
@@ -60,11 +60,11 @@ RUN apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Link BLAS library to use OpenBLAS using the alternatives mechanism (https://www.scipy.org/scipylib/building/linux.html#debian-ubuntu)
-RUN update-alternatives --set libblas.so.3 /usr/lib/openblas-base/libblas.so.3
+# RUN update-alternatives --set libblas.so.3 /usr/lib/openblas-base/libblas.so.3
 
-RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 10 \
-	  && update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 10 \
-	  && pip install --upgrade pip
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 10 \
+    && update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 10 \
+    && pip install --upgrade pip
 
 RUN python3 -m pip --no-cache-dir install numpy==1.15 \
     && python3 -m pip --no-cache-dir install scipy matplotlib scikit-image scikit-learn
@@ -86,7 +86,7 @@ RUN cd /opt \
   -DWITH_V4L=ON \
   -DINSTALL_C_EXAMPLES=OFF \
   -DINSTALL_PYTHON_EXAMPLES=ON \
-  -DBUILD_EXAMPLES=OFF \
+  -DBUILD_EXAMPLES=ON \
   -DWITH_QT=OFF \
   -DWITH_OPENGL=ON \
   -DWITH_CUDA=ON \
@@ -102,8 +102,12 @@ RUN python3 -m pip --no-cache-dir install \
   Cython \
 	easydict \
 	Pillow \
-	tensorflow-gpu==1.12.0 \
+  tb-nightly \
+	tensorflow-gpu==1.14.0 \
 	tensorlayer==1.11.0
+
+RUN python3 -m pip --no-cache-dir install \
+  pycocotools
 
 # Install TensorRT
 # Download TensorRT 5.1.5.0 GA for Ubuntu 1604 and CUDA 10.1 DEB local repo packages from https://developer.nvidia.com/tensorrt.
@@ -117,4 +121,5 @@ RUN python3 -m pip --no-cache-dir install \
 RUN echo 'export PS1="\[\033[04;35m\]\u @ \[\033[04;35m\]\H \[\033[00m\][\w] $ "' >> ~/.bashrc \
     && echo 'alias mkdir="mkdir -v"' >> ~/.bashrc \
     && echo 'alias tree="tree --dirsfirst --sort=name"' >> ~/.bashrc \
+    && echo 'alias ls="ls -1 --color=auto"' >> ~/.bashrc \
     && echo 'set -o noclobber' >> ~/.bashrc
