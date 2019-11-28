@@ -98,12 +98,14 @@ RUN cd /opt \
   && cd /opt/opencv/release \
   && make clean
 
+RUN python3 -m pip --no-cache-dir install Cython
+  
 RUN python3 -m pip --no-cache-dir install \
-  Cython \
 	easydict \
 	Pillow \
+  pycocotools \
 	tensorflow-gpu==1.12.0 \
-	tensorlayer==1.11.0
+	tensorlayer==1.11.1
 
 # Install TensorRT
 # Download TensorRT 5.1.5.0 GA for Ubuntu 1604 and CUDA 10.1 DEB local repo packages from https://developer.nvidia.com/tensorrt.
@@ -118,3 +120,5 @@ RUN echo 'export PS1="\[\033[04;35m\]\u @ \[\033[04;35m\]\H \[\033[00m\][\w] $ "
     && echo 'alias mkdir="mkdir -v"' >> ~/.bashrc \
     && echo 'alias tree="tree --dirsfirst --sort=name"' >> ~/.bashrc \
     && echo 'set -o noclobber' >> ~/.bashrc
+
+CMD cd /home/ && python3 train.py
