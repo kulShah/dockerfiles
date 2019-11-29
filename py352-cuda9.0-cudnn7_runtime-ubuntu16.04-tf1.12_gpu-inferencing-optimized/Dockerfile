@@ -1,4 +1,4 @@
-FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
+FROM nvidia/cuda:9.0-cudnn7-runtime-ubuntu16.04
 
 LABEL maintainer="Kuldeep Shah <Kul.n.shah@gmail.com>"
 
@@ -105,12 +105,15 @@ RUN cd /opt \
 
 RUN python3 -m pip --no-cache-dir install \
   Cython \
-	# easydict \
-	# Pillow \
-	# tensorflow-gpu==1.12.0 \
+	easydict \
+	Pillow \
+	tensorflow-gpu==1.12.0 \
 	tensorlayer==1.11.0
 
 #Install TensorRT dependencies
+RUN apt-get update \
+    && apt-get install -y libcudnn7-dev=7.6.3.30-1+cuda9.0
+
 RUN apt-get update \
     && apt-get install -y --no-install-recommends libnvinfer5=5.1.5-1+cuda9.0 \
     && apt-get install -y --no-install-recommends libnvinfer-dev=5.1.5-1+cuda9.0
